@@ -208,6 +208,7 @@ function showNewOP(){
     const userRole = JSON.parse(authToken).role;
     if(userRole === "User" || userRole === "SU") {
         op9.style.display = 'block';
+        showStats();
     }
 }
 
