@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Delete an account</title>
+</head>
+<body>
+<h1>Delete an account</h1>
+<p id="userRole"></p>
+<div id="userContent" style="display: none;">
+    <!-- content for regular users -->
+    <h2>Delete your account</h2>
+    <div>
+        <button id="delete-account-btn"
+                onclick="submitDelete(JSON.parse(authToken).username)">Delete
+            your Account
+        </button>
+    </div>
+</div>
+<div id="gContent" style="display: none;">
+    <!-- content for higher permission users -->
+    <h2>Insert account to be deleted</h2>
+    <form onsubmit="submitDelete(); return false;">
+        <label for="username">Username:</label><br> <input type="text"
+                                                           id="username" name="username"><br> <input type="submit"
+                                                                                                     value="Delete">
+    </form>
+</div>
+<script src="/app.js"></script>
+<script>
+		checkAuthToken();
+		showContentRoleDelete();
+</script>
+</body>
+</html>

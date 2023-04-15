@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Register</title>
+    <script src="/app.js"></script>
+    <script>
+	checkLogin();
+
+    </script>
+</head>
+<body>
+<h1>Register</h1>
+<form onsubmit="submitRegister(); return false;">
+    <label for="username">Username:</label><br> <input type="text"
+                                                       id="username" name="username"><br> <label
+        for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br> <label
+        for="email">Email:</label><br> <input type="email" id="email"
+                                              name="email"><br> <label for="privacy">Privacy:</label><br> <select
+        id="privacy">
+    <option value="">--Select an attribute--</option>
+    <option value="Private">Private</option>
+    <option value="Public">Public</option>
+</select><br> <label for="password">Password:</label><br> <input
+        type="password" id="password" name="password"><br> <label
+        for="confirm-password">Confirm Password:</label><br> <input
+        type="password" id="confirm-password" name="confirm-password"><br>
+    <br> <input type="submit" value="Register">
+</form>
+</body>
+</html>

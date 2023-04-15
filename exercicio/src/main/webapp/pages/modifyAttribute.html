@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Modify Account Attributes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1>Modify Account Attributes</h1>
+<p id="userRole"></p>
+<div id="userContent" style="display: none;">
+    <!-- content for regular users -->
+    <h1>No modifiable attributes</h1>
+    <p>Select the attribute you want to modify:</p>
+    <select id="attribute">
+        <option value="">--Select an attribute--</option>
+        <option value="user_privacy">Privacy</option>
+    </select>
+    <p>Enter the new value for the attribute:</p>
+    <input type="text" id="newValue">
+    <button type="button" onclick="modifyAccount()">Modify
+        Account
+    </button>
+</div>
+<div id="gContent" style="display: none;">
+    <!-- content for higher permission users -->
+    <h2>Modify an account's attributes</h2>
+    <p>Select the user whose attribute you want to modify:</p>
+    <input type="text" id="username">
+    <p>Select the attribute you want to modify:</p>
+    <select id="attributeG">
+        <option value="">--Select an attribute--</option>
+        <option value="user_name">Name</option>
+        <option value="user_email">Email</option>
+        <option value="user_privacy">Privacy</option>
+        <option value="user_role">Role</option>
+        <option value="user_state">State</option>
+    </select>
+    <p>Enter the new value for the attribute:</p>
+    <input type="text" id="newValueG">
+    <button type="button" onclick="modifyAccount()">Modify
+        Account
+    </button>
+</div>
+<script src="/app.js"></script>
+<script>
+		checkAuthToken();
+		showContentRoleBased();
+
+</script>
+</body>
+</html>

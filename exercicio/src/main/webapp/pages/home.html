@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Welcome to the Home Page!</h1>
+<div id="strip"></div>
+<p id="userRole"></p>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>No.Logins</th>
+            <th>No.Failed Logins</th>
+            <th>First Login</th>
+            <th>Last Login</th>
+            <th>Last Attempt</th>
+        </tr>
+        </thead>
+        <tbody id="statsTableBody">
+        </tbody>
+    </table>
+</div>
+<div>
+    <p>Here are our functionalities.</p>
+    <div>
+        <button onclick="displayToken()">Show Authentication Token</button>
+        <p id="tokenDisplay"></p>
+    </div>
+    <div>
+        <button id="delete-account-btn"
+                onclick="window.location.href = '/pages/delete.html'">Delete
+            an Account
+        </button>
+        <p></p>
+    </div>
+    <div>
+        <button id="modify-attribute-btn"
+                onclick="window.location.href = '/pages/modifyAttribute.html'">Modify
+            an Account
+        </button>
+        <p></p>
+    </div>
+    <div>
+        <button id="modify-pwd-btn"
+                onclick="window.location.href = '/pages/modifyPassword.html'">Modify
+            your password
+        </button>
+        <p></p>
+    </div>
+    <div>
+        <button id="list-users-btn"
+                onclick="window.location.href = '/pages/listUsers.html'">List
+            all users
+        </button>
+        <p></p>
+    </div>
+    <div>
+        <button id="logout-btn" onclick="logout()">Logout</button>
+        <p></p>
+    </div>
+</div>
+<script src="/app.js"></script>
+<script>
+		checkAuthToken();
+		showStats();
+</script>
+</body>
+</html>

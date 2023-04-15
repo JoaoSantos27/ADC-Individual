@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>List Users</title>
+</head>
+<body>
+<h1>List Users</h1>
+<p id="userRole"></p>
+<div id="userContent" style="display: none;">
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody id="userTableBody">
+        </tbody>
+    </table>
+</div>
+<div id="gContent" style="display: none;">
+    <!-- content for higher permission users -->
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Privacy</th>
+            <th>Role</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody id="userTableBody2">
+        </tbody>
+    </table>
+</div>
+<script src="/app.js"></script>
+<script>
+		checkAuthToken();
+		showContentRoleBased();
+		listUsers();
+
+</script>
+</body>
+</html>
