@@ -203,6 +203,14 @@ function submitPasswordChange() {
 	xhr.send(JSON.stringify({ token: token, password: currentPassword, newPassword: newPassword }));
 }
 
+function showNewOP(){
+    const op9 = document.getElementById('OP9');
+    const userRole = JSON.parse(authToken).role;
+    if(userRole === "User" || userRole === "SU") {
+        op9.style.display = 'block';
+    }
+}
+
 function showContentRoleBased() {
 	const userContent = document.getElementById('userContent');
 	const gContent = document.getElementById('gContent');
@@ -347,6 +355,51 @@ function showStats() {
 				lastAttemptTd.textContent = stats.lastAttempt;
 				tr.appendChild(lastAttemptTd);
 				statsTableBody.appendChild(tr);
+			} else {
+				console.log("Error fetching user data");
+			}
+		}
+	};
+	xhr.send(authToken);
+}
+
+function showInfo() {
+	const userTable = document.getElementById("userTable");
+	const xhr = new XMLHttpRequest();
+	xhr.open("POST", '/rest/users/info');
+	xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === XMLHttpRequest.DONE) {
+			if (xhr.status === 200) {
+				const info = JSON.parse(xhr.responseText);
+				const tr = document.createElement("tr");
+
+				const usernameTd = document.createElement("td");
+				usernameTd.textContent = info.username;
+				tr.appendChild(usernameTd);
+
+				const emailTd = document.createElement("td");
+				emailTd.textContent = info.email;
+				tr.appendChild(emailTd);
+
+				const nameTd = document.createElement("td");
+				nameTd.textContent = info.name;
+				tr.appendChild(nameTd);
+
+				const privacyTd = document.createElement("td");
+				privacyTd.textContent = info.privacy;
+				tr.appendChild(privacyTd);
+
+				const roleTd = document.createElement("td");
+				roleTd.textContent = info.role;
+				tr.appendChild(roleTd);
+
+				const stateTd = document.createElement("td");
+                stateTd.textContent = info.state;
+                tr.appendChild(stateTd);
+
+				userTable.appendChild(tr);
 			} else {
 				console.log("Error fetching user data");
 			}

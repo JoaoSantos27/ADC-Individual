@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link href="/styles.css" rel="stylesheet">
 </head>
 <body>
 <h1>Welcome to the Home Page!</h1>
-<div id="strip"></div>
-<p id="userRole"></p>
+<div id="strip">
+    <p id="userRole"></p>
+</div>
 <div>
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Privacy</th>
+            <th>Role</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody id="userTable">
+        </tbody>
+    </table>
+</div>
+<div id="OP9" style="display: none;">
     <table>
         <thead>
         <tr>
@@ -65,6 +82,7 @@
 <script src="/app.js"></script>
 <script>
 		checkAuthToken();
+		showInfo();
 		showStats();
 </script>
 </body>

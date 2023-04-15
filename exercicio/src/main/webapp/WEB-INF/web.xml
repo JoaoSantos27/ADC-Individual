@@ -48,7 +48,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet>
 		<servlet-name>servlet-storage</servlet-name>
 		<servlet-class>pt.unl.fct.di.apdc.firstwebapp.servlets.MediaResourceServlet</servlet-class>

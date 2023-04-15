@@ -145,6 +145,45 @@ public class ListResource {
         }
     }
 
+    @POST
+    @Path("/info")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public Response doInfoV1(AuthToken data) {
+        LOG.fine("Attempting to list all users");
+        String role = data.role;
+        Key tokenKey = datastore.newKeyFactory().setKind("AuthToken").newKey(data.tokenID);
+        Key userKey = datastore.newKeyFactory().setKind("User").newKey(data.username);
+        Transaction txn = datastore.newTransaction();
+        try {
+            Entity token = txn.get(tokenKey);
+            if (token == null) {
+                // Token does not exist
+                LOG.warning("Token does not exist");
+                return Response.status(Status.FORBIDDEN).build();
+            }
+            if (data.username.equals(token.getString("token_name"))) {
+                Entity entity = txn.get(userKey);
+                UserData user = entityToUser(entity);
+                txn.commit();
+                return Response.ok(g.toJson(user)).build();
+            } else {
+                LOG.warning("Token does not belong to you");
+                return Response.status(Status.FORBIDDEN).build();
+            }
+        } catch (Exception e) {
+            txn.rollback();
+            LOG.severe(e.getMessage());
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        } finally {
+            if (txn.isActive()) {
+                txn.rollback();
+                return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+            }
+        }
+    }
+
     private UserData entityToUser(Entity entity) {
         String username = entity.getKey().getName();
         String email = entity.getString("user_email");
