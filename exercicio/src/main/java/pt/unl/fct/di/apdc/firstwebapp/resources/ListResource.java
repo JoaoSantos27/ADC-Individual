@@ -59,7 +59,7 @@ public class ListResource {
             if (token == null) {
                 // Token does not exist
                 LOG.warning("Token does not exist");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
             if (data.username.equals(token.getString("token_name"))) {
                 // Construct the query based on the role
@@ -91,7 +91,7 @@ public class ListResource {
                 return Response.ok(g.toJson(users)).build();
             } else {
                 LOG.warning("Token does not belong to you");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
         } catch (Exception e) {
             txn.rollback();
@@ -120,7 +120,7 @@ public class ListResource {
             if (token == null) {
                 // Token does not exist
                 LOG.warning("Token does not exist");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
             if (data.username.equals(token.getString("token_name"))) {
                 // Construct the query based on the role
@@ -130,7 +130,7 @@ public class ListResource {
             } else {
                 txn.rollback();
                 LOG.warning("Token does not belong to you");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
         } catch (Exception e) {
             txn.rollback();
@@ -160,7 +160,7 @@ public class ListResource {
             if (token == null) {
                 // Token does not exist
                 LOG.warning("Token does not exist");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
             if (data.username.equals(token.getString("token_name"))) {
                 Entity entity = txn.get(userKey);
@@ -169,7 +169,7 @@ public class ListResource {
                 return Response.ok(g.toJson(user)).build();
             } else {
                 LOG.warning("Token does not belong to you");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
         } catch (Exception e) {
             txn.rollback();

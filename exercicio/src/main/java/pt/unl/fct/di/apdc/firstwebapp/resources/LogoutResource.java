@@ -44,7 +44,7 @@ public class LogoutResource {
             if (token == null) {
                 // Token does not exist
                 LOG.warning("Token does not exist");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
             if (data.username.equals(token.getString("token_name"))) {
                 txn.delete(tokenKey);
@@ -52,7 +52,7 @@ public class LogoutResource {
                 return Response.ok().build();
             }
             LOG.warning("Token does not belong to you");
-            return Response.status(Status.FORBIDDEN).build();
+            return Response.status(Status.UNAUTHORIZED).build();
         } catch (Exception e) {
             LOG.severe(e.getMessage());
             e.printStackTrace();

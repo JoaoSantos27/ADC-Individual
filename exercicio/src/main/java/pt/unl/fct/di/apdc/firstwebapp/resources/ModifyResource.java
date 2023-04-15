@@ -59,7 +59,7 @@ public class ModifyResource {
             if (token == null) {
                 // Token does not exist
                 LOG.warning("Token does not exist");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
             if (data.token.username.equals(token.getString("token_name"))) {
                 Entity user = txn.get(userKey);
@@ -117,7 +117,7 @@ public class ModifyResource {
 
             } else {
                 LOG.warning("Token does not belong to you");
-                return Response.status(Status.FORBIDDEN).build();
+                return Response.status(Status.UNAUTHORIZED).build();
             }
         } catch (
 

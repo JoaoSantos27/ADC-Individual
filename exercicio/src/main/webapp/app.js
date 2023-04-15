@@ -127,7 +127,11 @@ function submitDelete(username) {
 				alert('Account deleted successfully');
 				localStorage.setItem('authToken', xhr.responseText); // store the authentication token in localStorage
 				window.location.href = '/pages/home.html'; // redirect to home.html page
-			} else {
+			} else if (xhr.status === 401) {
+                localStorage.removeItem('authToken');
+                alert('Your session is invalid');
+                window.location.href = '/index.html';
+            } else {
 				// handle login error
 				alert('Account deletion failed: ' + xhr.statusText);
 			}
@@ -162,7 +166,11 @@ function modifyAccount() {
 			localStorage.setItem('authToken', xhr.responseText); // store the authentication token in localStorage
 			alert('Account modified successfully');
 			window.location.reload(); // refresh the page
-		} else {
+		} else if (xhr.status === 401) {
+		    localStorage.removeItem('authToken');
+		    alert('Your session is invalid');
+            window.location.href = '/index.html';
+        } else {
 			// handle modify error
 			alert('Account modification failed: ' + xhr.statusText);
 		}
@@ -192,7 +200,11 @@ function submitPasswordChange() {
 			// handle successful password change
 			alert('Password changed successfully');
 			window.location.href = '/pages/home.html'; // redirect to home page
-		} else {
+		} else if (xhr.status === 401) {
+        	localStorage.removeItem('authToken');
+        	alert('Your session is invalid');
+            window.location.href = '/index.html';
+        } else {
 			// handle password change error
 			alert('Password change failed: ' + xhr.statusText);
 		}
@@ -223,6 +235,9 @@ function showContentRoleBased() {
 		case 'GBO':
 			gContent.style.display = 'block'; // show the content for higher permission users
 			break;
+		case 'GA':
+        	gContent.style.display = 'block'; // show the content for higher permission users
+        	break;
 		case 'GS':
 			gContent.style.display = 'block'; // show the content for higher permission users
 			break;
@@ -247,10 +262,14 @@ function showContentRoleDelete() {
 			userContent.style.display = 'block'; // show the content for regular users
 			gContent.style.display = 'block'; // show the content for higher permission users
 			break;
-		case 'GS':
+		case 'GA':
 			userContent.style.display = 'block'; // show the content for regular users
 			gContent.style.display = 'block'; // show the content for higher permission users
 			break;
+		case 'GS':
+        	userContent.style.display = 'block'; // show the content for regular users
+        	gContent.style.display = 'block'; // show the content for higher permission users
+        	break;
 		case 'SU':
 			userContent.style.display = 'block'; // show the content for regular users
 			gContent.style.display = 'block'; // show the content for higher permission users
@@ -287,6 +306,10 @@ function listUsers() {
 						const nameTd = document.createElement("td");
 						nameTd.textContent = user.name;
 						tr.appendChild(nameTd);
+
+						const privacyTd = document.createElement("td");
+                        privacyTd.textContent = user.privacy;
+                        tr.appendChild(privacyTd);
 					} else {
 						const usernameTd = document.createElement("td");
 						usernameTd.textContent = user.username;
@@ -316,7 +339,11 @@ function listUsers() {
 					}
 					userTableBody.appendChild(tr);
 				}
-			} else {
+			} else if (xhr.status === 401) {
+            	localStorage.removeItem('authToken');
+            	alert('Your session is invalid');
+                window.location.href = '/index.html';
+            } else {
 				console.log("Error fetching user data");
 			}
 		}
@@ -356,7 +383,11 @@ function showStats() {
 				lastAttemptTd.textContent = stats.lastAttempt;
 				tr.appendChild(lastAttemptTd);
 				statsTableBody.appendChild(tr);
-			} else {
+			} else if (xhr.status === 401) {
+            	localStorage.removeItem('authToken');
+            	alert('Your session is invalid');
+                window.location.href = '/index.html';
+            } else {
 				console.log("Error fetching user data");
 			}
 		}
@@ -401,7 +432,11 @@ function showInfo() {
                 tr.appendChild(stateTd);
 
 				userTable.appendChild(tr);
-			} else {
+			} else if (xhr.status === 401) {
+            	localStorage.removeItem('authToken');
+            	alert('Your session is invalid');
+                window.location.href = '/index.html';
+            } else {
 				console.log("Error fetching user data");
 			}
 		}
@@ -429,7 +464,11 @@ function logout() {
 			localStorage.removeItem('authToken');
 			alert('Logged out successfully!');
 			window.location.href = '/index.html'; // redirect to index.html page
-		} else {
+		} else if (xhr.status === 401) {
+        	localStorage.removeItem('authToken');
+        	alert('Your session is invalid');
+            window.location.href = '/index.html';
+        } else {
 			// handle login error
 			alert('Logout failed: ' + xhr.statusText);
 		}
