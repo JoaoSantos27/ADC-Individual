@@ -104,8 +104,8 @@ function submitRegister() {
 	};
 	xhr.send(JSON.stringify({
 		username: username,
-		name: name,
 		email: email,
+		name: name,
 		privacy: privacy,
 		password: password
 	}));

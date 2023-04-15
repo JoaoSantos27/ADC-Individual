@@ -90,12 +90,13 @@ public class ModifyResource {
                             txn.rollback();
                             LOG.warning("Invalid role");
                             return Response.status(Status.FORBIDDEN).build();
-                        } else {
-
+                        } else if (data.token.role.equals(user.getString("user_role"))) {
                             data.token.role = data.newValue;
                             token = Entity.newBuilder(token).set("token_role", data.token.role).build();
                             txn.update(token);
                         }
+
+
                     }
                     if (data.attribute.equals("user_state")) {
                         if (!data.newValue.equals(State.INACTIVE.getValue()) && !data.newValue.equals(State.ACTIVE.getValue()) || !checkStateModPerms(data, user.getString("user_role"))) {

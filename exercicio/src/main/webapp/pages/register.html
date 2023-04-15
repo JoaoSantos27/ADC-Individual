@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Register</title>
     <script src="/app.js"></script>
@@ -10,20 +10,20 @@
 <body>
 <h1>Register</h1>
 <form onsubmit="submitRegister(); return false;">
-    <label for="username">Username:</label><br> <input type="text"
-                                                       id="username" name="username"><br> <label
+    <label for="username">Username:</label><br> <input id="username"
+                                                       name="username" type="text"><br> <label
         for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br> <label
-        for="email">Email:</label><br> <input type="email" id="email"
-                                              name="email"><br> <label for="privacy">Privacy:</label><br> <select
+    <input id="name" name="name" type="text"><br> <label
+        for="email">Email:</label><br> <input id="email" name="email"
+                                              type="email"><br> <label for="privacy">Privacy:</label><br> <select
         id="privacy">
     <option value="">--Select an attribute--</option>
     <option value="Private">Private</option>
     <option value="Public">Public</option>
 </select><br> <label for="password">Password:</label><br> <input
-        type="password" id="password" name="password"><br> <label
+        id="password" name="password" type="password"><br> <label
         for="confirm-password">Confirm Password:</label><br> <input
-        type="password" id="confirm-password" name="confirm-password"><br>
+        id="confirm-password" name="confirm-password" type="password"><br>
     <br> <input type="submit" value="Register">
 </form>
 </body>
